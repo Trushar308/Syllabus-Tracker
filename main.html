@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Syllabus Tracker</title>
+    <style>
+      body {
+        font-family: "Georgia", serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212; /* Dark background */
+        color: #e0e0e0; /* Light text color */
+        line-height: 1.6;
+      }
+      header {
+        background-color: #1f1f1f; /* Darker header */
+        padding: 20px;
+        text-align: center;
+        color: #ffffff; /* White text */
+        animation: fadeIn 1s ease-in; /* Animation for header */
+      }
+      nav {
+        margin: 20px 0;
+        text-align: center;
+      }
+      nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #e0e0e0; /* Light text color */
+        font-weight: bold;
+        padding: 10px 15px;
+        transition: background-color 0.3s, transform 0.3s; /* Transition for hover effect */
+      }
+      nav a:hover {
+        background-color: #333333; /* Darker hover effect */
+        border-radius: 5px;
+        transform: scale(1.05); /* Slightly enlarge on hover */
+      }
+      main {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #1e1e1e; /* Dark main background */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        animation: slideIn 0.5s ease-in; /* Animation for main content */
+      }
+      section {
+        margin: 30px 0;
+      }
+      h2 {
+        border-bottom: 2px solid #444; /* Darker border */
+        padding-bottom: 10px;
+        color: #bb86fc; /* Light purple color */
+        transition: color 0.3s; /* Transition for h2 color change */
+      }
+      h2:hover {
+        color: #ff79c6; /* Change color on hover */
+      }
+      ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+      ul li {
+        margin-bottom: 10px;
+      }
+      footer {
+        background-color: #1f1f1f; /* Darker footer */
+        color: #ffffff; /* White text */
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+      }
+      .checkbox-list {
+        margin-top: 20px;
+      }
+      .login-form {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #2e2e2e; /* Darker background for login */
+        border-radius: 5px;
+        max-width: 400px;
+        text-align: center;
+      }
+      .login-form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+      }
+      .login-form button {
+        padding: 10px;
+        background-color: #bb86fc; /* Button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .login-form button:hover {
+        background-color: #ff79c6; /* Button hover color */
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Party animation styles */
+      .party {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #ffcc00;
+        opacity: 0.8;
+        animation: fall 2s infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Math Syllabus Tracker</h1>
+      <p>Track your progress and prepare for your exams!</p>
+    </header>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#syllabus">Math Syllabus</a>
+      <a href="#about">About</a>
+      <a href="#login">Login</a>
+    </nav>
+
+    <main>
+      <section id="login">
+        <h2>Login</h2>
+        <div class="login-form">
+          <input type="text" id="username" placeholder="Username" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <button onclick="login()">Login</button>
+        </div>
+      </section>
+
+      <section id="home">
+        <h2>Welcome to the Math Syllabus Tracker</h2>
+        <p>
+          This platform helps you track your math syllabus and prepare
+          effectively for your exams.
+        </p>
+      </section>
+
+      <section id="syllabus">
+        <h2>Math Syllabus for Upcoming Exam</h2>
+        <h3>Topics to Cover:</h3>
+        <ul>
+          <li>
+            <input
+              type="checkbox"
+              id="algebra"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="algebra"
+              ><strong>Algebra:</strong> Polynomials, Quadratic Equations, and
+              Functions.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="calculus"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="calculus"
+              ><strong>Calculus:</strong> Limits, Derivatives, and
+              Integrals.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="geometry"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="geometry"
+              ><strong>Geometry:</strong> Shapes, Theorems, and Proofs.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="statistics"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="statistics"
+              ><strong>Statistics:</strong> Mean, Median, Mode, and
+              Probability.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="trigonometry"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="trigonometry"
+              ><strong>Trigonometry:</strong> Sine, Cosine, Tangent, and their
+              Applications.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="linear-algebra"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="linear-algebra"
+              ><strong>Linear Algebra:</strong> Vectors, Matrices, and Linear
+              Transformations.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="discrete-mathematics"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="discrete-mathematics"
+              ><strong>Discrete Mathematics:</strong> Set Theory, Graph Theory,
+              and Combinatorics.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="probability"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="probability"
+              ><strong>Probability:</strong> Random Variables, Distributions,
+              and Expectation.</label
+            >
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="number-theory"
+              class="topic-checkbox"
+              onchange="checkTopic(this)"
+            />
+            <label for="number-theory"
+              ><strong>Number Theory:</strong> Prime Numbers, Divisibility, and
+              Modular Arithmetic.</label
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section id="about">
+        <h2>About This Tracker</h2>
+        <p>
+          This platform is designed for students to help them stay organized and
+          focused on their math syllabus. Our goal is to support your learning
+          journey!
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Math Syllabus Tracker © 2024 - Your Path to Success!</p>
+    </footer>
+
+    <div class="party" id="party"></div>
+
+    <script>
+      // Load saved syllabus state from localStorage
+      window.onload = function () {
+        const checkboxes = document.querySelectorAll(".topic-checkbox");
+        checkboxes.forEach((checkbox) => {
+          const savedState = localStorage.getItem(checkbox.id);
+          checkbox.checked = savedState === "true";
+        });
+      };
+
+      function checkTopic(checkbox) {
+        if (checkbox.checked) {
+          createConfetti();
+        }
+        // Save the state of the checkbox to localStorage
+        localStorage.setItem(checkbox.id, checkbox.checked);
+      }
+
+      function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        // Here you would typically send the username and password to your server for validation
+        alert(`Logged in as: ${username}`);
+        // Save user data or tracking logic can be implemented here
+      }
+
+      function createConfetti() {
+        const partyDiv = document.getElementById("party");
+        for (let i = 0; i < 100; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
+          confetti.style.backgroundColor =
+            "#" + Math.floor(Math.random() * 16777215).toString(16);
+          partyDiv.appendChild(confetti);
+          setTimeout(() => {
+            confetti.remove();
+          }, 4000);
+        }
+      }
+    </script>
+  </body>
+</html>
